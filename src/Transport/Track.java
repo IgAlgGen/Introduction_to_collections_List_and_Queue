@@ -62,11 +62,6 @@ public class Track extends Transport<License_C> {
         return getTypeOfLoad() != null;
     }
 
-    public void passingDiagnostics() {
-        super.passingDiagnostics();
-    }
-
-
     @Override
     public void printType() {
         if (typeOfLoad != null) {

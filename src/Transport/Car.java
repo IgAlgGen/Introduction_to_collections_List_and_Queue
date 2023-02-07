@@ -81,11 +81,6 @@ public class Car extends Transport<License_B> {
         return getBodyType() != null;
     }
 
-    public void passingDiagnostics() {
-        super.passingDiagnostics();
-    }
-
-
     @Override
     public void printType() {
         if (bodyType != null) {

@@ -35,20 +35,6 @@ public abstract class Transport<T extends DriverInfo> implements Emulous {
 
     abstract public boolean isNeedDiagnostics() throws TransportTypeException;
 
-
-    public void passingDiagnostics() {
-
-        try {
-            if (isNeedDiagnostics()) {
-                System.out.println(this + " прошло диагностику");
-            } else {
-                System.out.println("Транспортное средство " + this.getMark() + " не опознано и не должно проходить диагностику.");
-            }
-        } catch (TransportTypeException e) {
-            System.out.println("Автобусы не должны проходить диагностику.");
-        }
-    }
-
     public boolean isNeedService() {
         try {
             isNeedDiagnostics();

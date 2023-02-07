@@ -64,9 +64,9 @@ public class Solution {
         }
 
 
-        car1.passingDiagnostics();
-        track1.passingDiagnostics();
-        bus1.passingDiagnostics();
+        passingDiagnostics(car1);
+        passingDiagnostics(bus1);
+        passingDiagnostics(track1);
 
         System.out.println();
 
@@ -77,6 +77,19 @@ public class Solution {
 
     public static void printSolution(Transport<?> transport) {
         System.out.println("Водитель " + transport.getDriverInfo() + ", управляет автомобилем " + transport + " и будет участвовать в заезде.");
+    }
+
+    public static void passingDiagnostics(Transport<?> transport) {
+
+        try {
+            if (transport.isNeedDiagnostics()) {
+                System.out.println("Транспортное средство " +transport + " прошло диагностику.");
+            } else {
+                System.out.println("Транспортное средство " + transport + " не опознано.");
+            }
+        } catch (TransportTypeException e) {
+            System.out.println("Автобусы не должны проходить диагностику.");
+        }
     }
 
 }

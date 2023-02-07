@@ -65,10 +65,6 @@ public class Bus extends Transport<License_D> {
         throw new TransportTypeException("Автобусы не должны проходить диагностику.");
     }
 
-    public void passingDiagnostics() {
-        super.passingDiagnostics();
-    }
-
     @Override
     public void printType() {
         if (capacity != null) {
