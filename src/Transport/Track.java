@@ -1,12 +1,15 @@
 package Transport;
 
 import Drivers.License_C;
+import Maintenance.Mechanic;
+
+import java.util.List;
 
 public class Track extends Transport<License_C> {
     private TypeOfLoad typeOfLoad;
 
-    public Track(String mark, String model, double engineVolume, double typeOfLoadE, License_C driverInfo) {
-        super(mark, model, engineVolume, driverInfo);
+    public Track(String mark, String model, double engineVolume, double typeOfLoadE, License_C driverInfo, List<Mechanic> mechanicList) {
+        super(mark, model, engineVolume, driverInfo, mechanicList);
         this.typeOfLoad = TypeOfLoad.getValue(typeOfLoadE);
     }
 
@@ -54,44 +57,41 @@ public class Track extends Transport<License_C> {
         }
     }
 
+
+    public boolean isNeedDiagnostics() {
+        return getTypeOfLoad() != null;
+    }
+
     @Override
-    public void passDiagnostics() throws TransportTypeException {
-        if (getTypeOfLoad() != null) {
-            super.passDiagnostics();
+    public void printType() {
+        if (typeOfLoad != null) {
+            System.out.println(typeOfLoad.toString());
         } else {
-            throw new TransportTypeException();
+            System.out.println("Данных по транспортному средству недостаточно");
         }
     }
 
-        @Override
-        public void printType () {
-            if (typeOfLoad != null) {
-                System.out.println(typeOfLoad.toString());
-            } else {
-                System.out.println("Данных по транспортному средству недостаточно");
-            }
-        }
-
-        public void startMoving () {
-            System.out.println("Транспортное средство " + getMark() + " " + getModel() + " начало движение.");
-        }
-
-        public void finishMoving () {
-            System.out.println("Транспортное средство " + getMark() + " " + getModel() + " закончило движение.");
-        }
-
-        @Override
-        public void pitStop () {
-            System.out.println("Время пит-стоп ");
-        }
-
-        @Override
-        public void bestTimeLap () {
-            System.out.println("Лучший круг ");
-        }
-
-        @Override
-        public void maxSpeed () {
-            System.out.println("Максимальная скорость ");
-        }
+    public void startMoving() {
+        System.out.println("Транспортное средство " + getMark() + " " + getModel() + " начало движение.");
     }
+
+    public void finishMoving() {
+        System.out.println("Транспортное средство " + getMark() + " " + getModel() + " закончило движение.");
+    }
+
+    @Override
+    public void pitStop() {
+        System.out.println("Время пит-стоп ");
+    }
+
+    @Override
+    public void bestTimeLap() {
+        System.out.println("Лучший круг ");
+    }
+
+    @Override
+    public void maxSpeed() {
+        System.out.println("Максимальная скорость ");
+    }
+
+}

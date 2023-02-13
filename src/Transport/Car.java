@@ -1,14 +1,20 @@
 package Transport;
 
 import Drivers.License_B;
+import Maintenance.Mechanic;
+
+import java.util.List;
 
 public class Car extends Transport<License_B> {
     private BodyType bodyType;
 
-    public Car(String mark, String model, double engineVolume, String bodyTypeE, License_B driverInfo) {
-        super(mark, model, engineVolume, driverInfo);
+
+    public Car(String mark, String model, double engineVolume, String bodyTypeE, License_B driverInfo, List<Mechanic> mechanicList) {
+        super(mark, model, engineVolume, driverInfo, mechanicList);
         this.bodyType = BodyType.getValue(bodyTypeE);
+
     }
+
 
     public BodyType getBodyType() {
         return bodyType;
@@ -71,13 +77,8 @@ public class Car extends Transport<License_B> {
         }
     }
 
-    @Override
-    public void passDiagnostics() throws TransportTypeException {
-        if (getBodyType() != null) {
-            super.passDiagnostics();
-        } else {
-            throw new TransportTypeException();
-        }
+    public boolean isNeedDiagnostics() {
+        return getBodyType() != null;
     }
 
     @Override
@@ -111,4 +112,5 @@ public class Car extends Transport<License_B> {
     public void maxSpeed() {
         System.out.println("Максимальная скорость ");
     }
+
 }

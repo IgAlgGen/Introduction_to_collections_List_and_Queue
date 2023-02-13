@@ -1,19 +1,21 @@
 package Transport;
 
 import Drivers.License_D;
+import Maintenance.Mechanic;
+
+import java.util.List;
 
 public class Bus extends Transport<License_D> {
 
-    Capacity capacity;
+    private Capacity capacity;
 
-    public Bus(String mark, String model, double engineVolume, int capacityE, License_D driverInfo) {
-        super(mark, model, engineVolume, driverInfo);
+    public Bus(String mark, String model, double engineVolume, int capacityE, License_D driverInfo, List<Mechanic> mechanicList) {
+        super(mark, model, engineVolume, driverInfo, mechanicList);
         this.capacity = Capacity.getValue(capacityE);
     }
 
     public Capacity getCapacity() {
         return capacity;
-
     }
 
     public void setCapacity(Capacity capacity) {
@@ -58,13 +60,9 @@ public class Bus extends Transport<License_D> {
         }
     }
 
-    @Override
-    public void passDiagnostics() throws TransportTypeException {
-        if (getCapacity() != null) {
-            System.out.println("«Автобусы» диагностику проходить не должны.");
-        } else {
-            throw new TransportTypeException();
-        }
+
+    public boolean isNeedDiagnostics() {
+        throw new TransportTypeException("Автобусы не должны проходить диагностику.");
     }
 
     @Override

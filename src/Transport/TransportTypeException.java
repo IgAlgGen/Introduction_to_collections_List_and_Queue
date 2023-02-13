@@ -1,6 +1,6 @@
 package Transport;
 
-public class TransportTypeException extends Exception {
+public class TransportTypeException extends RuntimeException{
 
     public TransportTypeException() {
     }
